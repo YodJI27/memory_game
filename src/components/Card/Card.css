@@ -1,0 +1,9 @@
+.Card {
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Card__image {
+    width: 70px;
+    height: 70px;
+}
