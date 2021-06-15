@@ -1,16 +1,16 @@
 import icons from "../../contants/constants";
-import { CARDS } from "../../contants/types";
+import { CARDS, UPDATEARRAY } from "../../contants/types";
 
 const initialState = {
-    icons,
+  icons,
 };
 
 const rootCards = (state = initialState, action) => {
   switch (action.type) {
-    case CARDS:
+    case UPDATEARRAY:
       return {
         ...state,
-        icons: state.icons,
+        icons: action.payload.card,
       };
     default:
       return state;

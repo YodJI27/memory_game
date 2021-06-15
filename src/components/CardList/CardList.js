@@ -15,8 +15,8 @@ const CardList = ({ cardsArray }) => {
         <button className="CardList__button">Начать игру</button>
       </div>
       <div className="CardList__cards">
-        {cardsArray.icons.map((item) => {
-          return <Card icon={item.icon} />;
+        {cardsArray.map((item) => {
+          return <Card icon={item} key={item.value}/>;
         })}
       </div>
     </section>
@@ -25,10 +25,8 @@ const CardList = ({ cardsArray }) => {
 
 const mapStateToProps = (state) => {
   return {
-    cardsArray: state.rootCards,
+    cardsArray: state.rootCards.icons,
   };
 };
-
-
 
 export default connect(mapStateToProps, null)(CardList);
