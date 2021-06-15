@@ -9,25 +9,6 @@ const initialState = {
 
 const newCardsArray = [];
 
-// const handleChange = (action, state) => {
-//   console.log(state);
-//   newCardsArray.push(action);
-//   if (newCardsArray.length === 2) {
-//     if (newCardsArray[0] === newCardsArray[1]) {
-//       const newArrayState = state.image.filter((item) => {
-//         if (item.icon !== newCardsArray[0]) {
-//           return item;
-//         }
-//       });
-//       store.dispatch(updateArray(newArrayState));
-//       state.image = newArrayState;
-//       newCardsArray.length = 0;
-//       console.log(newArrayState)
-//       return state.image;
-//     }
-//   }
-// };
-
 const ChoiceCard = (state = initialState, action) => {
   switch (action.type) {
     case CHOICECARD:
@@ -35,11 +16,12 @@ const ChoiceCard = (state = initialState, action) => {
         ...state,
         icons: state.image.map((item) => {
           if (item.value === action.payload.value) {
-            newCardsArray.push(action.payload.icon);
+            item.visible = true;
+            newCardsArray.push(item);
             if (newCardsArray.length === 2) {
-              if (newCardsArray[0] === newCardsArray[1]) {
+              if (newCardsArray[0].icon === newCardsArray[1].icon) {
                 const newArrayState = state.image.filter((item) => {
-                  if (item.icon !== newCardsArray[0]) {
+                  if (item.icon !== newCardsArray[0].icon) {
                     return item;
                   }
                 });
@@ -47,12 +29,19 @@ const ChoiceCard = (state = initialState, action) => {
                 state.image = newArrayState;
                 newCardsArray.length = 0;
                 return state.image;
+              } else {
+                setTimeout(() => {
+                  newCardsArray.map((card) => {
+                    card.visible = false;
+                  });
+                  newCardsArray.length = 0;
+                }, 200);
               }
-              newCardsArray.length = 0;
             }
           }
         }),
       };
+
     case UPDATEARRAY:
       return {
         ...state,

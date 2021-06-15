@@ -1,5 +1,5 @@
 import icons from "../../contants/constants";
-import { CARDS, UPDATEARRAY } from "../../contants/types";
+import { UPDATEARRAY } from "../../contants/types";
 
 const initialState = {
   icons,

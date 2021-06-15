@@ -1,5 +1,10 @@
 import icons from "../../contants/constants";
-import { CARDS, CHOICECARD, CLOSECARD, UPDATEARRAY } from "../../contants/types";
+import {
+  CARDS,
+  CHOICECARD,
+  CLOSECARD,
+  UPDATEARRAY,
+} from "../../contants/types";
 
 const cardsCreator = () => {
   return {
@@ -15,15 +20,7 @@ export const addCardArray = (card) => {
     type: CHOICECARD,
     payload: {
       value: card.value,
-      icon: card.icon
-    },
-  };
-};
-export const deleteCardArray = (card) => {
-  return {
-    type: CLOSECARD,
-    payload: {
-      value: card,
+      icon: card.icon,
     },
   };
 };
@@ -38,10 +35,23 @@ export const updateArray = (card) => {
             card: card,
           },
         }),
-      2000
+      600
     );
   };
-}
+};
 
+export const closedCards = (close, icon) => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch({
+        type: CLOSECARD,
+        payload: {
+          close,
+          icon,
+        },
+      });
+    }, 600)
+  };
+};
 
 export default { cardsCreator };
